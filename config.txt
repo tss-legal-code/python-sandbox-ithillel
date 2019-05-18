@@ -1,0 +1,6 @@
+## https://git-scm.com/book/en/v1/Git-Basics-Getting-a-Git-Repository
+git config --global user.name tss-legal-code
+git config --global user.email tss.legal.code@github.com
+git config --global core.editor xed
+git config --global merge.tool tkcvs
+
