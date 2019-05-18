@@ -3,6 +3,8 @@ git config --global user.name tss-legal-code
 git config --global user.email tss.legal.code@github.com
 git config --global core.editor xed
 git config --global merge.tool tkcvs
+
+git config --list
 ##
 git clone https://github.com/tss-legal-code/testlab ##other folder
 git add config.txt
@@ -10,4 +12,8 @@ git status
 git push
 
 
+
+git remote -v
+git pull https://github.com/tss-legal-code/testlab
+git config remote set-url https://github.com/tss-legal-code/testlab ## ?????
 
