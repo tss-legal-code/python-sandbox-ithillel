@@ -17,3 +17,15 @@ git remote -v
 git pull https://github.com/tss-legal-code/testlab
 git config remote set-url https://github.com/tss-legal-code/testlab ## ?????
 
+
+#exclude some files from output of "git status"
+#https://git-scm.com/book/en/v1/Git-Basics-Recording-Changes-to-the-Repository
+$ cat .gitignore
+*.[oa]
+*~
+The first line tells Git to ignore any files ending in .o or .a — object and archive files that may be the product of building your code. The second line tells Git to ignore all files that end with a tilde (~), which is used by many text editors such as Emacs to mark temporary files. You may also include a log, tmp, or pid directory; automatically generated documentation; and so on. Setting up a .gitignore file before you get going is generally a good idea so you don’t accidentally commit files that you really don’t want in your Git repository.
+
+git diff
+
+If you want to see what you’ve staged that will go into your next commit, you can use 
+git diff --cached
