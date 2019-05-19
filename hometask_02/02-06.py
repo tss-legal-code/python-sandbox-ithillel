@@ -6,7 +6,7 @@
 
 print("Value summarizer")
 
-s = "English = 78.22 Science = 83 Math = 68 History = 65"
+s = "English = 78 Science = 83 Math = 68 History = 65"
 print("Given string is: {}".format(s))
 
 s_sum = 0
