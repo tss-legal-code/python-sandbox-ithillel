@@ -1,7 +1,7 @@
 ## https://git-scm.com/book/en/v1/Git-Basics-Getting-a-Git-Repository
 git config --global user.name tss-legal-code
 git config --global user.email tss.legal.code@github.com
-git config --global core.editor xed
+git config --global core.editor nano
 git config --global merge.tool tkcvs
 
 git config --list
@@ -29,3 +29,5 @@ git diff
 
 If you want to see what you’ve staged that will go into your next commit, you can use 
 git diff --cached
+
+git reset # to delete tracking of files to be committed
