@@ -56,8 +56,7 @@ while True:
                         continue
                     else:
                         print('Something strange happened!')
-                #
-                string += ' = {}'.format(entered)    
+                #string += ' = {}'.format(entered)    
                 
                 print('Simple multipliers are ', string)
                 
