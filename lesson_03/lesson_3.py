@@ -30,27 +30,18 @@ t = t.replace("#", end_char)
 
 t = t.split("\n")
 
-w =  len(t[0])
-h =  len(t)
-
-testing = True
-
-if testing:
-    print("width =",w)
-    print("height =", h)
-
 m =[]
 
-for y in range(h):
+for y in range(len(t)):
     m.append([])
-    for x in range(w):
+    for x in range(len(t[0])):
         m[y].append([])
         m[y][x] = t[y][x]
 
 def view():
     wd = 5
-    for y in range(h):
-        for x in range(w):
+    for y in range(len(t)):
+        for x in range(len(t[0])):
             if m[y][x] == start_char:
                 print("{:^{wd}}".format(m[y][x],wd=wd), end="")
             elif m[y][x] == end_char:
@@ -58,31 +49,111 @@ def view():
             elif m[y][x] == wall:
                 print(m[y][x]*wd,end ="")
             else:
-                print("{:{wd}}".format(m[y][x],wd=wd), end="")
+                print("{:^{wd}}".format(m[y][x],wd=wd), end="")
         print()
+        
 
-view()
 print()
 
-val = 0
+stack =[]
 
-def go(cur):
-    # cur - for current coords y(h):x(w)
-    global val
-    y = cur[0]
-    x = cur[1]
-    m[y][x] = val
-    val +=1
-    if m[y-1][x] == path:
-        go((y - 1, x))
-    if m[y+1][x] == path:
-        go((y + 1, x))
-    if m[y][x+1] == path:
-        go((y, x + 1))
-    if m[y][x-1] == path:
-        go((y, x - 1))
+def search(coords,
+           labirinth=m,
+           target=end_char,
+           free=path,
+           visited="X"):
 
-start_pos = (1, 1)
-go(start_pos)
+    #for storing path points we use 'stack'
+    global stack
 
+    # coords - for current position coords y(h):x(w)
+    y = coords[0]
+    x = coords[1]
+    stack.append((coords))
+    print(coords, end ="")
+    
+    #detect target or if not detected - just mark current position and continue
+    if labirinth[y][x] == target:
+        return stack
+    else:
+        labirinth[y][x] = visited
+
+        if labirinth[y][x-1] != free and\
+           labirinth[y][x+1] != free and\
+           labirinth[y+1][x] != free and\
+           labirinth[y-1][x] != free:
+            stack = stack.remove((coords))
+        
+        if labirinth[y-1][x] == free:
+            search((y - 1, x))
+        
+        if labirinth[y+1][x] == free:
+            search((y + 1, x))
+        
+        if labirinth[y][x+1] == free:
+            search((y, x + 1))
+        
+        if labirinth[y][x-1] == free:
+            search((y, x - 1))
+    
+    
+
+trek = search((1, 1))
+print(trek)
 view()
+
+##
+##def search(coords,
+##           labirinth=m,
+##           target=end_char,
+##           free=path,
+##           visited="X"):
+##
+##    #for storing path points we use 'stack'
+##    global stack
+##
+##    # coords - for current position coords y(h):x(w)
+##    y = coords[0]
+##    x = coords[1]
+##    stack.append((coords))
+##    
+##    #detect target or if not detected - just mark current position and continue
+##    if labirinth[y][x] == target:
+##        return stack
+##    else:
+##        labirinth[y][x] = visited
+##        if labirinth[y-1][x] == free:
+##            return search((y - 1, x))
+##        elif labirinth[y+1][x] == free:
+##            return search((y + 1, x))
+##        elif labirinth[y][x+1] == free:
+##            return search((y, x + 1))
+##        elif labirinth[y][x-1] == free:
+##            return search((y, x - 1))
+##        elif labirinth[y][x-1] != free and\
+##           labirinth[y][x-1] != free and\
+##           labirinth[y+1][x] != free and\
+##           labirinth[y-1][x] != free:
+##            return stack[:-1]
+##
+##trek = search((1, 1))
+##print(trek)
+##view()
+
+
+
+##def go(cur):
+##    # cur - for current coords y(h):x(w)
+##    global val
+##    y = cur[0]
+##    x = cur[1]
+##    m[y][x] = val
+##    val +=1
+##    if m[y-1][x] == path:
+##        go((y - 1, x))
+##    if m[y+1][x] == path:
+##        go((y + 1, x))
+##    if m[y][x+1] == path:
+##        go((y, x + 1))
+##    if m[y][x-1] == path:
+##        go((y, x - 1))

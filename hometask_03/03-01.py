@@ -31,175 +31,83 @@ t = t.replace("#", end_char)
 
 t = t.split("\n")
 
+def view(lab):
+    wd = 5
+    for y in range(len(lab)):
+        for x in range(len(lab[0])):
+            if lab[y][x] == start_char:
+                print("{:^{wd}}".format(lab[y][x],wd=wd), end="")
+            elif lab[y][x] == end_char:
+                print("{:^{wd}}".format(lab[y][x],wd=wd), end="")
+            elif lab[y][x] == wall:
+                print(lab[y][x]*wd,end ="")
+            else:
+                print("{:^{wd}}".format(lab[y][x],wd=wd), end="")
+        print()
 
 
 m =[]
+start_coords = ()
+end_coords = ()
 
 for y in range(len(t)):
     m.append([])
     for x in range(len(t[0])):
         m[y].append([])
         m[y][x] = t[y][x]
-
-def view():
-    wd = 5
-    for y in range(len(t)):
-        for x in range(len(t[0])):
-            if m[y][x] == start_char:
-                print("{:^{wd}}".format(m[y][x],wd=wd), end="")
-            elif m[y][x] == end_char:
-                print("{:^{wd}}".format(m[y][x],wd=wd), end="")
-            elif m[y][x] == wall:
-                print(m[y][x]*wd,end ="")
-            else:
-                print("{:^{wd}}".format(m[y][x],wd=wd), end="")
-        print()
-
-view()
-
-#everywhere coords format is: (y,x) ==> 'y' = row and 'x' = column
-
-searched_cells = []
-ways = (path, end_char)
-
-def search_ways(cell):
-    global searched_cells
-    searched_cells.append(cell)
-    y = cell[0]
-    x = cell[1]
-
-    return_ways = []
-    for test_y, test_x in ((y-1,x),(y+1,x),(y,x-1),(y,x+1)):
-        if (test_y, test_x) not in searched_cells and m[test_y][test_x] in ways:
-            return_ways.append((test_y, test_x))
-
-    return return_ways
+        if m[y][x] == start_char:
+            start_coords = (y,x)
+        if m[y][x] == end_char:
+            end_coords = (y,x)
 
 
 
-way = [(1,1)]
+print("1. Coordinates for start are {} and for finish are {}".format(start_coords,end_coords))
 
-found_exit = False
+step = 0
 
-while not found_exit:
-    for c in way:
-        for coords in search_ways((c[0], c[0])):
-            print(coords)
-    break
+current_cell = [start_coords]
+next_cell=[]
 
+found = False
+final_coords = ()
 
-# while True
-#     if len(stack) == 0:
-#         cell = (1,1)
-#
-#     y = coords[0]
-#     x = coords[1]
-#
-#     stack.append((coords))
-#     print(coords, end ="")
+while not found:
+    step += 1
+    next_cell = []
+    for coords in current_cell:
+        #print("step {} coords {}".format(step, coords))
+        y, x = coords
+        if m[y][x] == end_char:
+            print("found_exit!!!")
+            m[y][x] = step
+            final_coords = (y,x)
+            found = True
+        else:
+            m[y][x] = step
+        for test_y, test_x in ((y - 1, x), (y + 1, x), (y, x - 1), (y, x + 1)):
+            if m[test_y][test_x] == path or m[test_y][test_x] == end_char:
+                next_cell.append((test_y, test_x))
 
+    current_cell = next_cell
 
-# print()
-#
-# stack =[]
-#
-# def search(coords,
-#            labirinth=m,
-#            target=end_char,
-#            free=path,
-#            visited="X"):
-#
-#     #for storing path points we use 'stack'
-#     global stack
-#
-#     # coords - for current position coords y(h):x(w)
-#     y = coords[0]
-#     x = coords[1]
-#     stack.append((coords))
-#     print(coords, end ="")
-#
-#     #detect target or if not detected - just mark current position and continue
-#     if labirinth[y][x] == target:
-#         return stack
-#     else:
-#         labirinth[y][x] = visited
-#
-#         if labirinth[y][x-1] != free and\
-#            labirinth[y][x+1] != free and\
-#            labirinth[y+1][x] != free and\
-#            labirinth[y-1][x] != free:
-#             stack = stack.remove((coords))
-#
-#         if labirinth[y-1][x] == free:
-#             search((y - 1, x))
-#
-#         if labirinth[y+1][x] == free:
-#             search((y + 1, x))
-#
-#         if labirinth[y][x+1] == free:
-#             search((y, x + 1))
-#
-#         if labirinth[y][x-1] == free:
-#             search((y, x - 1))
-#
-#
-#
-# trek = search((1, 1))
-# print(trek)
-# view()
+view(m)
 
-##
-##def search(coords,
-##           labirinth=m,
-##           target=end_char,
-##           free=path,
-##           visited="X"):
-##
-##    #for storing path points we use 'stack'
-##    global stack
-##
-##    # coords - for current position coords y(h):x(w)
-##    y = coords[0]
-##    x = coords[1]
-##    stack.append((coords))
-##    
-##    #detect target or if not detected - just mark current position and continue
-##    if labirinth[y][x] == target:
-##        return stack
-##    else:
-##        labirinth[y][x] = visited
-##        if labirinth[y-1][x] == free:
-##            return search((y - 1, x))
-##        elif labirinth[y+1][x] == free:
-##            return search((y + 1, x))
-##        elif labirinth[y][x+1] == free:
-##            return search((y, x + 1))
-##        elif labirinth[y][x-1] == free:
-##            return search((y, x - 1))
-##        elif labirinth[y][x-1] != free and\
-##           labirinth[y][x-1] != free and\
-##           labirinth[y+1][x] != free and\
-##           labirinth[y-1][x] != free:
-##            return stack[:-1]
-##
-##trek = search((1, 1))
-##print(trek)
-##view()
+for i in range(step):
+    y, x  = final_coords
+    m[y][x] = u"\u2217"
+    for test_y, test_x in ((y - 1, x), (y + 1, x), (y, x - 1), (y, x + 1)):
+        if m[test_y][test_x] == step - 1:
+            m[test_y][test_x] = u"\u2217"
+            final_coords = (test_y,test_x)
+            step-=1
+
+for y in range(len(m)):
+    for x in range(len(m[0])):
+        if isinstance(m[y][x],int):
+            m[y][x] = ""
 
 
+print()
+view(m)
 
-##def go(cur):
-##    # cur - for current coords y(h):x(w)
-##    global val
-##    y = cur[0]
-##    x = cur[1]
-##    m[y][x] = val
-##    val +=1
-##    if m[y-1][x] == path:
-##        go((y - 1, x))
-##    if m[y+1][x] == path:
-##        go((y + 1, x))
-##    if m[y][x+1] == path:
-##        go((y, x + 1))
-##    if m[y][x-1] == path:
-##        go((y, x - 1))

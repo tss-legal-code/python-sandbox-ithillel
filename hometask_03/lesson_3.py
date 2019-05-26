@@ -23,12 +23,15 @@ wall = u"\u2588"
 path = " "
 start_char = u"\u25b2"
 end_char = u"\u2605"
+
 t = t.replace("1", wall)
 t = t.replace("0", path)
 t = t.replace("x", start_char)
 t = t.replace("#", end_char)
 
 t = t.split("\n")
+
+
 
 m =[]
 
@@ -51,56 +54,99 @@ def view():
             else:
                 print("{:^{wd}}".format(m[y][x],wd=wd), end="")
         print()
-        
 
-print()
-
-stack =[]
-
-def search(coords,
-           labirinth=m,
-           target=end_char,
-           free=path,
-           visited="X"):
-
-    #for storing path points we use 'stack'
-    global stack
-
-    # coords - for current position coords y(h):x(w)
-    y = coords[0]
-    x = coords[1]
-    stack.append((coords))
-    print(coords, end ="")
-    
-    #detect target or if not detected - just mark current position and continue
-    if labirinth[y][x] == target:
-        return stack
-    else:
-        labirinth[y][x] = visited
-
-        if labirinth[y][x-1] != free and\
-           labirinth[y][x+1] != free and\
-           labirinth[y+1][x] != free and\
-           labirinth[y-1][x] != free:
-            stack = stack.remove((coords))
-        
-        if labirinth[y-1][x] == free:
-            search((y - 1, x))
-        
-        if labirinth[y+1][x] == free:
-            search((y + 1, x))
-        
-        if labirinth[y][x+1] == free:
-            search((y, x + 1))
-        
-        if labirinth[y][x-1] == free:
-            search((y, x - 1))
-    
-    
-
-trek = search((1, 1))
-print(trek)
 view()
+
+#everywhere coords format is: (y,x) ==> 'y' = row and 'x' = column
+
+searched_cells = []
+ways = (path, end_char)
+
+def search_ways(cell):
+    global searched_cells
+    searched_cells.append(cell)
+    y = cell[0]
+    x = cell[1]
+
+    return_ways = []
+    for test_y, test_x in ((y-1,x),(y+1,x),(y,x-1),(y,x+1)):
+        if (test_y, test_x) not in searched_cells and m[test_y][test_x] in ways:
+            return_ways.append((test_y, test_x))
+
+    return return_ways
+
+
+
+way = [(1,1)]
+
+found_exit = False
+
+while not found_exit:
+    for c in way:
+        for coords in search_ways((c[0], c[0])):
+            print(coords)
+    break
+
+
+# while True
+#     if len(stack) == 0:
+#         cell = (1,1)
+#
+#     y = coords[0]
+#     x = coords[1]
+#
+#     stack.append((coords))
+#     print(coords, end ="")
+
+
+# print()
+#
+# stack =[]
+#
+# def search(coords,
+#            labirinth=m,
+#            target=end_char,
+#            free=path,
+#            visited="X"):
+#
+#     #for storing path points we use 'stack'
+#     global stack
+#
+#     # coords - for current position coords y(h):x(w)
+#     y = coords[0]
+#     x = coords[1]
+#     stack.append((coords))
+#     print(coords, end ="")
+#
+#     #detect target or if not detected - just mark current position and continue
+#     if labirinth[y][x] == target:
+#         return stack
+#     else:
+#         labirinth[y][x] = visited
+#
+#         if labirinth[y][x-1] != free and\
+#            labirinth[y][x+1] != free and\
+#            labirinth[y+1][x] != free and\
+#            labirinth[y-1][x] != free:
+#             stack = stack.remove((coords))
+#
+#         if labirinth[y-1][x] == free:
+#             search((y - 1, x))
+#
+#         if labirinth[y+1][x] == free:
+#             search((y + 1, x))
+#
+#         if labirinth[y][x+1] == free:
+#             search((y, x + 1))
+#
+#         if labirinth[y][x-1] == free:
+#             search((y, x - 1))
+#
+#
+#
+# trek = search((1, 1))
+# print(trek)
+# view()
 
 ##
 ##def search(coords,
