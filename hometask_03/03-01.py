@@ -79,7 +79,7 @@ while not found:
         #print("step {} coords {}".format(step, coords))
         y, x = coords
         if m[y][x] == end_char:
-            print("found_exit!!!")
+            print("Python found exit!!!")
             m[y][x] = step
             final_coords = (y,x)
             found = True
@@ -95,10 +95,10 @@ view(m)
 
 for i in range(step):
     y, x  = final_coords
-    m[y][x] = u"\u2217"
+    m[y][x] = "#"
     for test_y, test_x in ((y - 1, x), (y + 1, x), (y, x - 1), (y, x + 1)):
         if m[test_y][test_x] == step - 1:
-            m[test_y][test_x] = u"\u2217"
+            m[test_y][test_x] = "#"
             final_coords = (test_y,test_x)
             step-=1
 
