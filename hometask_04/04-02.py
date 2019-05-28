@@ -26,4 +26,3 @@ else:
 print("\nSum of items with \'special\' indexes is \'{}\'\npenultimate element is \'{}\'\n\
 if we multipy this sum with penultimate element we get \'{}\'".format(sum_items,a[-2], sum_items*a[-2]))
 
-#d = lambda x: True if sum([int(n) for n in bin(100)[2:]]) % 2 == 0 else False
