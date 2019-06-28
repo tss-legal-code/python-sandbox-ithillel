@@ -17,60 +17,72 @@ print(task)
 print("{:=^80s}".format("< 1. HW 6. Строки и файлы >"))
 
 
-from string import ascii_lowercase
-from itertools import permutations
-
-passwords = ["".join(p) for p in permutations(ascii_lowercase, 3)]
-#print (passwords)
-
 import os
 base_path = os.getcwd()
-file_name = "new.zip"
-full_path = base_path + "/" + file_name
+archive = base_path + "/" + "lesson6.zip"
 
 import zipfile
+arch = zipfile.ZipFile(archive, "r")
 
-archive = zipfile.ZipFile(full_path, mode='r')
+from string import ascii_lowercase
+from itertools import permutations
+passwords = ["".join(p).encode() for p in permutations(ascii_lowercase, 3)]
 
-# zip_file = open(full_path, "rb")
-# if zipfile.is_zipfile(zip_file):
-#     print("Файл {} являетя валидным ZIP-архивом".format(zip_file))
-# else:
-#     print("Файл {} НЕ являетя валидным ZIP-архивом".format(zip_file))
+#successfully extracted using "zip" password, i.e. no need to repeat this block every time i do further coding ^_^
+import time
+start = time.time()
 
-print(archive)
+for word in passwords:
+    try:
+        if time.time() - start > 1:
+            print("Currently passing \'{}\' ...".format(word.decode()))
+            start = time.time()
+        arch.extractall(base_path, pwd=word)
+    except Exception:
+        pass
+    else:
+        print("Correct password is \'{}\'!".format(word.decode() ))
+        break
+
+os.chdir("lesson6")
+
+print("Found these log files:")
+log_paths = []
+for info in [x for x in os.walk(os.getcwd())]:
+    for log in info[-1]:
+        log_paths.append(info[0]+"/"+log)
+
+[print(x) for x in log_paths]
 
 
-password = None
-opened_zip = None
-opened = False
+os.chdir(base_path)
 
+database = {}
+for log_path in log_paths:
+    print("Processing: {}".format(log_path))
+    with open(log_path, "r") as file:
+        for line in file:
+            try:
+                row = [x.strip() for x in line.split("\t")]
+                city, user, request = row[3], row[4], row[5]
+                if city not in database:
+                    database[city] = {}
+                if request not in database[city]:
+                    database[city][request] = [user]
+                elif user not in database[city][request]:
+                    database[city][request].append(user)
+            except Exception:
+                print("While importing data from \n\'{}\'\nat line \n\'{}\'\n an error happened!!!".format(file,line))
 
-#archive.printdir()
-archive.extractall(path=base_path, pwd=b'asd')
-#full_path, mode='r', pwd=bytes("asd"))
-print(str.encode("asd"), "asd".encode("utf-8"))
+import shutil
+shutil.rmtree("lesson6")
 
-chunk = "я строка".encode('utf8')
-print(chunk)
+if not os.path.exists("results_per_city"):
+    os.mkdir("results_per_city")
+os.chdir("results_per_city")
 
-
-
-print(opened_zip)
-
-# def brute(archive, password):
-#     try:
-#         archive.extractall(pwd=password)
-#         print('[+] Password is {}'.format(password))
-#     except:
-#         pass
-
-#     try:
-#         data = ZipFile.open(file, mode="r", pwd=p)
-#         print("Found password {}".format(p))
-#     except:
-#         pass
-#
-# # opened = False
-# # while not opened:
-# #     zipfile.ZipFile.open(full_path, "rb")
+for city in database:
+    with open(city+".tsv","+w") as output:
+        print("Writing to file {}".format(city+".tsv"))
+        for request in database[city]:
+            output.write("{}\t{}\n".format(request, len(database[city][request])))
