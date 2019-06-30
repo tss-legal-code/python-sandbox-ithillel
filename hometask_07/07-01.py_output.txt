@@ -1,0 +1,298 @@
+/home/tss/python/testlab/venv/bin/python /home/tss/python/testlab/hometask_07/07-01.py
+
+По аналогии с LRU кешем реализовать LFU кеш.
+LFU (Least frequently used) - кеш в которм при необходимости удаления - выбирается элемент который использовался реже всего.
+
+=============================< 1. HW 7. LFU cache >=============================
+wrapper works...
+...adding key ['1'] to cache
+
+Number 1 in third power is 1:
+
+Cacahe contents:
+("['1']", {'count': 1, 'val': 1})
+
+wrapper works...
+...adding key ['2'] to cache
+
+Number 2 in third power is 8:
+
+Cacahe contents:
+("['1']", {'count': 1, 'val': 1})
+("['2']", {'count': 1, 'val': 8})
+
+wrapper works...
+...adding key ['4'] to cache
+
+Number 4 in third power is 64:
+
+Cacahe contents:
+("['1']", {'count': 1, 'val': 1})
+("['2']", {'count': 1, 'val': 8})
+("['4']", {'count': 1, 'val': 64})
+
+wrapper works...
+...taking key ['1'] from cache
+
+Number 1 in third power is 1:
+
+Cacahe contents:
+("['1']", {'count': 2, 'val': 1})
+("['2']", {'count': 1, 'val': 8})
+("['4']", {'count': 1, 'val': 64})
+
+wrapper works...
+...taking key ['1'] from cache
+
+Number 1 in third power is 1:
+
+Cacahe contents:
+("['1']", {'count': 3, 'val': 1})
+("['2']", {'count': 1, 'val': 8})
+("['4']", {'count': 1, 'val': 64})
+
+wrapper works...
+...removing key ['2'] from cache
+...adding key ['23'] to cache
+
+Number 23 in third power is 12167:
+
+Cacahe contents:
+("['1']", {'count': 3, 'val': 1})
+("['4']", {'count': 1, 'val': 64})
+("['23']", {'count': 1, 'val': 12167})
+
+wrapper works...
+...taking key ['4'] from cache
+
+Number 4 in third power is 64:
+
+Cacahe contents:
+("['1']", {'count': 3, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['23']", {'count': 1, 'val': 12167})
+
+wrapper works...
+...taking key ['1'] from cache
+
+Number 1 in third power is 1:
+
+Cacahe contents:
+("['1']", {'count': 4, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['23']", {'count': 1, 'val': 12167})
+
+wrapper works...
+...removing key ['23'] from cache
+...adding key ['2'] to cache
+
+Number 2 in third power is 8:
+
+Cacahe contents:
+("['1']", {'count': 4, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['2']", {'count': 1, 'val': 8})
+
+wrapper works...
+...removing key ['2'] from cache
+...adding key ['3'] to cache
+
+Number 3 in third power is 27:
+
+Cacahe contents:
+("['1']", {'count': 4, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['3']", {'count': 1, 'val': 27})
+
+wrapper works...
+...taking key ['1'] from cache
+
+Number 1 in third power is 1:
+
+Cacahe contents:
+("['1']", {'count': 5, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['3']", {'count': 1, 'val': 27})
+
+wrapper works...
+...removing key ['3'] from cache
+...adding key ['12'] to cache
+
+Number 12 in third power is 1728:
+
+Cacahe contents:
+("['1']", {'count': 5, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['12']", {'count': 1, 'val': 1728})
+
+wrapper works...
+...removing key ['12'] from cache
+...adding key ['3'] to cache
+
+Number 3 in third power is 27:
+
+Cacahe contents:
+("['1']", {'count': 5, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['3']", {'count': 1, 'val': 27})
+
+wrapper works...
+...removing key ['3'] from cache
+...adding key ['2'] to cache
+
+Number 2 in third power is 8:
+
+Cacahe contents:
+("['1']", {'count': 5, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['2']", {'count': 1, 'val': 8})
+
+wrapper works...
+...taking key ['1'] from cache
+
+Number 1 in third power is 1:
+
+Cacahe contents:
+("['1']", {'count': 6, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['2']", {'count': 1, 'val': 8})
+
+wrapper works...
+...removing key ['2'] from cache
+...adding key ['12'] to cache
+
+Number 12 in third power is 1728:
+
+Cacahe contents:
+("['1']", {'count': 6, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['12']", {'count': 1, 'val': 1728})
+
+wrapper works...
+...removing key ['12'] from cache
+...adding key ['2'] to cache
+
+Number 2 in third power is 8:
+
+Cacahe contents:
+("['1']", {'count': 6, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['2']", {'count': 1, 'val': 8})
+
+wrapper works...
+...removing key ['2'] from cache
+...adding key ['3'] to cache
+
+Number 3 in third power is 27:
+
+Cacahe contents:
+("['1']", {'count': 6, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['3']", {'count': 1, 'val': 27})
+
+wrapper works...
+...taking key ['3'] from cache
+
+Number 3 in third power is 27:
+
+Cacahe contents:
+("['1']", {'count': 6, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['3']", {'count': 2, 'val': 27})
+
+wrapper works...
+...taking key ['1'] from cache
+
+Number 1 in third power is 1:
+
+Cacahe contents:
+("['1']", {'count': 7, 'val': 1})
+("['4']", {'count': 2, 'val': 64})
+("['3']", {'count': 2, 'val': 27})
+
+wrapper works...
+...removing key ['4'] from cache
+...adding key ['12'] to cache
+
+Number 12 in third power is 1728:
+
+Cacahe contents:
+("['1']", {'count': 7, 'val': 1})
+("['3']", {'count': 2, 'val': 27})
+("['12']", {'count': 1, 'val': 1728})
+
+wrapper works...
+...removing key ['12'] from cache
+...adding key ['4'] to cache
+
+Number 4 in third power is 64:
+
+Cacahe contents:
+("['1']", {'count': 7, 'val': 1})
+("['3']", {'count': 2, 'val': 27})
+("['4']", {'count': 1, 'val': 64})
+
+wrapper works...
+...taking key ['3'] from cache
+
+Number 3 in third power is 27:
+
+Cacahe contents:
+("['1']", {'count': 7, 'val': 1})
+("['3']", {'count': 3, 'val': 27})
+("['4']", {'count': 1, 'val': 64})
+
+wrapper works...
+...removing key ['4'] from cache
+...adding key ['2'] to cache
+
+Number 2 in third power is 8:
+
+Cacahe contents:
+("['1']", {'count': 7, 'val': 1})
+("['3']", {'count': 3, 'val': 27})
+("['2']", {'count': 1, 'val': 8})
+
+wrapper works...
+...taking key ['1'] from cache
+
+Number 1 in third power is 1:
+
+Cacahe contents:
+("['1']", {'count': 8, 'val': 1})
+("['3']", {'count': 3, 'val': 27})
+("['2']", {'count': 1, 'val': 8})
+
+wrapper works...
+...removing key ['2'] from cache
+...adding key ['12'] to cache
+
+Number 12 in third power is 1728:
+
+Cacahe contents:
+("['1']", {'count': 8, 'val': 1})
+("['3']", {'count': 3, 'val': 27})
+("['12']", {'count': 1, 'val': 1728})
+
+wrapper works...
+...taking key ['3'] from cache
+
+Number 3 in third power is 27:
+
+Cacahe contents:
+("['1']", {'count': 8, 'val': 1})
+("['3']", {'count': 4, 'val': 27})
+("['12']", {'count': 1, 'val': 1728})
+
+wrapper works...
+...taking key ['3'] from cache
+
+Number 3 in third power is 27:
+
+Cacahe contents:
+("['1']", {'count': 8, 'val': 1})
+("['3']", {'count': 5, 'val': 27})
+("['12']", {'count': 1, 'val': 1728})
+
+
+Process finished with exit code 0
