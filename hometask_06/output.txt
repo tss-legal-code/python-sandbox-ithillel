@@ -1,0 +1,117 @@
+/home/tss/python/testlab/venv/bin/python /home/tss/python/testlab/hometask_06/06-01.py
+
+HW 6. Строки и файлы
+1. Скачать архив
+https://github.com/kirill-levenets/python_course/blob/master/lesson6.zip
+2. Подобрать пароль (3 строчных латинских буквы). Для работы с архивами можно использовать модуль zipfile. Для подбора паролей - itertools.
+3. Распаковать (в итоге получится группа папок с файлами логов в таком формате
+“device	age	sex	city	user_id	search_keyword	domain	url	type”
+4. Создать папку и в ней для каждого города который встретится в логах, создать файл (вида “new_jersey.tsv”) в котором вывести все поисковые запросы и количество уникальных user_id с которыми они встречались (через 	)
+alabama.tsv
+   facebook	23
+   youtube	13
+   facebook login	6
+   ebay	6
+
+==========================< 1. HW 6. Строки и файлы >===========================
+Currently passing 'fod' ...
+Currently passing 'kgb' ...
+Currently passing 'rvm' ...
+Currently passing 'xlq' ...
+Correct password is 'zip'!
+Found these log files:
+/home/tss/python/testlab/hometask_06/lesson6/file_16.txt
+/home/tss/python/testlab/hometask_06/lesson6/file_19.txt
+/home/tss/python/testlab/hometask_06/lesson6/file_17.txt
+/home/tss/python/testlab/hometask_06/lesson6/file_18.txt
+/home/tss/python/testlab/hometask_06/lesson6/d3/file_15.txt
+/home/tss/python/testlab/hometask_06/lesson6/d3/d32/file_13.txt
+/home/tss/python/testlab/hometask_06/lesson6/d3/d32/file_14.txt
+/home/tss/python/testlab/hometask_06/lesson6/d3/d31/file_12.txt
+/home/tss/python/testlab/hometask_06/lesson6/d3/d31/file_10.txt
+/home/tss/python/testlab/hometask_06/lesson6/d3/d31/file_11.txt
+/home/tss/python/testlab/hometask_06/lesson6/d2/file_7.txt
+/home/tss/python/testlab/hometask_06/lesson6/d2/d21/file_8.txt
+/home/tss/python/testlab/hometask_06/lesson6/d2/d21/file_9.txt
+/home/tss/python/testlab/hometask_06/lesson6/d1/file_6.txt
+/home/tss/python/testlab/hometask_06/lesson6/d1/d12/file_2.txt
+/home/tss/python/testlab/hometask_06/lesson6/d1/d12/file_4.txt
+/home/tss/python/testlab/hometask_06/lesson6/d1/d12/file_3.txt
+/home/tss/python/testlab/hometask_06/lesson6/d1/d11/file_0.txt
+/home/tss/python/testlab/hometask_06/lesson6/d1/d11/file_1.txt
+/home/tss/python/testlab/hometask_06/lesson6/d1/d13/file_5.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/file_16.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/file_19.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/file_17.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/file_18.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d3/file_15.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d3/d32/file_13.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d3/d32/file_14.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d3/d31/file_12.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d3/d31/file_10.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d3/d31/file_11.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d2/file_7.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d2/d21/file_8.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d2/d21/file_9.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d1/file_6.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d1/d12/file_2.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d1/d12/file_4.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d1/d12/file_3.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d1/d11/file_0.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d1/d11/file_1.txt
+Processing: /home/tss/python/testlab/hometask_06/lesson6/d1/d13/file_5.txt
+Writing to file Maryland.tsv
+Writing to file California.tsv
+Writing to file Kentucky.tsv
+Writing to file Connecticut.tsv
+Writing to file North Carolina.tsv
+Writing to file Florida.tsv
+Writing to file Maine.tsv
+Writing to file Pennsylvania.tsv
+Writing to file Indiana.tsv
+Writing to file Oregon.tsv
+Writing to file Arizona.tsv
+Writing to file Texas.tsv
+Writing to file Tennessee.tsv
+Writing to file New York.tsv
+Writing to file Illinois.tsv
+Writing to file New Hampshire.tsv
+Writing to file Oklahoma.tsv
+Writing to file Ohio.tsv
+Writing to file Alaska.tsv
+Writing to file Georgia.tsv
+Writing to file Louisiana.tsv
+Writing to file Washington.tsv
+Writing to file Wisconsin.tsv
+Writing to file Massachusetts.tsv
+Writing to file Iowa.tsv
+Writing to file Alabama.tsv
+Writing to file Idaho.tsv
+Writing to file New Mexico.tsv
+Writing to file Nebraska.tsv
+Writing to file Minnesota.tsv
+Writing to file Virginia.tsv
+Writing to file Missouri.tsv
+Writing to file New Jersey.tsv
+Writing to file District of Columbia.tsv
+Writing to file Michigan.tsv
+Writing to file Utah.tsv
+Writing to file West Virginia.tsv
+Writing to file South Carolina.tsv
+Writing to file Hawaii.tsv
+Writing to file Kansas.tsv
+Writing to file Nevada.tsv
+Writing to file \N.tsv
+Writing to file Mississippi.tsv
+Writing to file Colorado.tsv
+Writing to file Vermont.tsv
+Writing to file Arkansas.tsv
+Writing to file Montana.tsv
+Writing to file Rhode Island.tsv
+Writing to file North Dakota.tsv
+Writing to file South Dakota.tsv
+Writing to file Delaware.tsv
+Writing to file Wyoming.tsv
+
+Process finished with exit code 0
+

@@ -1,0 +1,56 @@
+/home/tss/python/testlab/venv/bin/python /home/tss/python/testlab/hometask_08/08-02.py
+
+8.1. Создайте два класса: Person — хранит общую информацию о людях — имя, профессия, зарплата;
+класс Manager — специализированный производный класс.
+В классе Person создайте свою версию для стандартной встроенной функции str.
+
+8.2. Реализовать класс который будет:
+- читать из ввода строку
+- проверять, что строка состоит только из скобочек “{}[]()<>”
+- проверять, что строка является правильной скобочной последовательностью - выводить вердикт
+
+8.3. У вас несколько JSON файлов. В каждом из этих файлов есть произвольная структура данных.
+Вам необходимо написать класс который будет описывать работу с этими файлами, а именно:
+- запись в файл
+- чтение из файла
+- объединение данных из файлов в новый файл
+- получить относительный путь к файлу
+- получить абсолютный путь к файлу
+
+====================================< 8.2 >=====================================
+Enter a set of brackets: ()(()((({{{}{}{}}}<((())){}>))))
+Input consists only from brackets
+added ( to stack
+removed ) from stack
+added ( to stack
+added ( to stack
+removed ) from stack
+added ( to stack
+added ( to stack
+added ( to stack
+added { to stack
+added { to stack
+added { to stack
+removed } from stack
+added { to stack
+removed } from stack
+added { to stack
+removed } from stack
+removed } from stack
+removed } from stack
+added < to stack
+added ( to stack
+added ( to stack
+added ( to stack
+removed ) from stack
+removed ) from stack
+removed ) from stack
+added { to stack
+removed } from stack
+removed > from stack
+removed ) from stack
+removed ) from stack
+removed ) from stack
+removed ) from stack
+Input DO CONSISTS from valid pairs of brackets
+Enter a set of brackets:
